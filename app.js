@@ -12,6 +12,11 @@ app.get("/", function(req, res) {
     res.render("primeira_pagina")
 })
 
+//---------------------------------------------------------------/
+//criando uma rota para a segunda página
+app.get("/segunda_pagina", function(req, res) {
+    res.render("segunda_pagina")
+})
 
 //---------------------------------------------------------------/
 //criando servidor web na porta 8081
