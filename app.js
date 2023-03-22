@@ -14,8 +14,8 @@ app.get("/", function(req, res) {
 
 //---------------------------------------------------------------/
 //criando uma rota para a segunda página
-app.get("/segunda_pagina", function(req, res) {
-    res.render("segunda_pagina")
+app.get("/cadastrar", function(req, res) {
+    res.send("Formulário recebido!!")
 })
 
 //---------------------------------------------------------------/

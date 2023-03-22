@@ -26,8 +26,6 @@ const Agendamentos = sequelize.define("agendamentos",{
                   observacao:{
                     type: Sequelize.STRING
                   }
-
-
 })
 
 //Agendamentos.sync({force: true})
