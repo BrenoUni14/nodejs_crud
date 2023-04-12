@@ -1,0 +1,42 @@
+<div class="container-lg">
+                  <div class="container text-center">
+                                    <div class="row">
+                                                      <div class="col">
+                                                      Nome
+                                                      </div>
+                                                      <div class="col">
+                                                      Telefone
+                                                      </div>
+                                                      <div class="col">
+                                                      Origem
+                                                      </div>
+                                                      <div class="col">
+                                                      Data de nascimento
+                                                      </div>
+                                                      <div class="col">
+                                                      Observação
+                                                      </div>
+                                    </div>
+                  {{#each post}}
+                                    {{#dataValues}}
+                                    <div class="row">
+                                                      <div class="col">
+                                                      {{nome}}
+                                                      </div>
+                                                      <div class="col">
+                                                      {{telefone}}
+                                                      </div>
+                                                      <div class="col">
+                                                      {{origem}}
+                                                      </div>
+                                                      <div class="col">
+                                                      {{data}}
+                                                      </div>
+                                                      <div class="col">
+                                                      {{observacao}}
+                                                      </div>
+                                    </div>
+                                    {{/dataValues}}
+                  {{/each}}
+                  </div>
+</div>

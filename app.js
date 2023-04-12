@@ -19,8 +19,19 @@ app.get("/", function(req, res) {
 })
 
 //---------------------------------------------------------------/
+//criando uma rota para a página de consulta
+app.get("/consultar", function(req, res){
+    post.findAll().then(function(post){
+        res.render("consulta", {post})
+    }).catch(function(erro){
+        console.log("Erro ao carregar dados do banco: "+ erro)
+    })
+})
+
+
+//---------------------------------------------------------------/
 //criando uma rota para a segunda página
-app.get("/cadastrar", function(req, res) {
+app.get("/cadastra", function(req, res) {
     res.send("Formulário recebido!!")
 })
 
