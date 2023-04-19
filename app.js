@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser")
 const express = require("express")
+const { sequelize } = require("./models/banco")
 const app = express()
 const post = require("./models/post")
 
@@ -19,17 +20,6 @@ app.get("/", function(req, res) {
 })
 
 //---------------------------------------------------------------/
-//criando uma rota para a página de consulta
-app.get("/consultar", function(req, res){
-    post.findAll().then(function(post){
-        res.render("consulta", {post})
-    }).catch(function(erro){
-        console.log("Erro ao carregar dados do banco: "+ erro)
-    })
-})
-
-
-//---------------------------------------------------------------/
 //criando uma rota para a segunda página
 app.get("/cadastra", function(req, res) {
     res.send("Formulário recebido!!")
@@ -44,11 +34,39 @@ app.post("/cadastrar", function(req, res){
         observacao: req.body.observacao
         
     }).then(function(){
-        res.send("Dados enviados com sucesso!")
+        res.send("Dados enviados com sucesso!");
+        res.redirect("/cadastrar");
     }).catch(function(erro){
         res.send("Falha ao cadastrar os dados: "+erro)
     });
 })
+
+//---------------------------------------------------------------/
+//criando uma rota para a página de consulta
+app.get("/consultar", function(req, res){
+    post.findAll().then(function(post){
+        res.render("consulta", {post})
+    }).catch(function(erro){
+        console.log("Erro ao carregar dados do banco: "+ erro)
+    })
+})
+
+//---------------------------------------------------------------/
+//criando uma rota para a página de exclusão
+app.get("/deletar/:id", function(req, res){
+    const id = req.params.id;
+
+    post.destroy({
+        where: {
+            id: id
+        }
+    }).then(function(){
+        res.redirect('/consultar');
+    }).catch(function(erro){
+        console.log("Erro ao carregar dados do banco: "+ erro)
+    })
+})
+
 
 //---------------------------------------------------------------/
 //criando servidor web na porta 8081
