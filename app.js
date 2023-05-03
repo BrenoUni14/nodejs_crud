@@ -52,6 +52,16 @@ app.get("/consultar", function(req, res){
 })
 
 //---------------------------------------------------------------/
+//criando uma rota para a página de edição
+app.get("/editar/:id", function(req, res){
+    post.findAll({where: {'id': req.params.id}}).then(function(post){
+        res.render("editar", {post})
+    }).catch(function(erro){
+        console.log("Erro ao carregar dados do banco: " + erro)
+    })
+})
+
+//---------------------------------------------------------------/
 //criando uma rota para a página de exclusão
 app.get("/deletar/:id", function(req, res){
     const id = req.params.id;
@@ -67,6 +77,24 @@ app.get("/deletar/:id", function(req, res){
     })
 })
 
+//---------------------------------------------------------------/
+//criando uma rota para a atualização na consulta
+app.post("/atualizar", function(req, res){
+
+    post.update({
+        nome: req.body.nome,
+        telefone: req.body.telefone,
+        origem: req.body.origem,
+        data_contato: req.body.data_contato,
+        observacao: req.body.observacao
+    },{
+        where: {
+            id: req.body.id
+        }
+    }).then(function(){
+        res.redirect("/consultar")
+    })
+})
 
 //---------------------------------------------------------------/
 //criando servidor web na porta 8081
